@@ -20,8 +20,8 @@ class App extends React.Component {
     $.ajax({
       method: 'POST',
       url: url+'/repos',
-      dataType: 'jsonp',
-      data: term,
+      dataType: 'text',
+      data: {"gitHandle": term}
     })
   }
 
