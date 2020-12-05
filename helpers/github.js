@@ -1,5 +1,6 @@
 const axios = require('axios');
 const config = require('../config.js');
+const db = require('../database/index.js');
 
 let getReposByUsername = (gitName) => {
   const gitUrl = `https://api.github.com/users/${gitName}`;
@@ -17,7 +18,13 @@ let getReposByUsername = (gitName) => {
     }
   })
   .then(res=>{
-    console.log(res.data);
+    db.save(res.data)
+    console.log('got here!');
+  })
+  .catch(err=>{
+    if(err){
+      console.log(err);
+    }
   })
 }
 
