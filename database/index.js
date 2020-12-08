@@ -14,7 +14,6 @@ let save = (repo) => {
   console.log(repo);
   let rep = new Repo({
     id: repo.id,
-    handle: repo.login,
     url: repo.url,
     owner: repo.name
   })
@@ -31,7 +30,9 @@ const read = (cb) =>{
   Repo.find((err, repos)=>{
     if(err)throw new Error;
     cb(repos);
-  });
+  })
+  .limit(25)
+  .sort({'name':1});
 };
 
 module.exports.save = save;

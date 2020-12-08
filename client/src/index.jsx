@@ -12,7 +12,17 @@ class App extends React.Component {
     this.state = { 
       repos: []
     }
+  }
 
+  componentDidMount(){
+    $.get('/repos', (repoArr)=>{
+      console.log('success');
+    })
+    .done((repoArr)=>{
+      this.setState({
+        repos: repoArr
+      });
+    });
   }
 
   search (term) {
